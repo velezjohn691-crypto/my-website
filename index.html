@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Spin Demo</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
+    text-align:center;
+}
+.container{
+    max-width:500px;
+    margin:40px auto;
+    padding:20px;
+}
+h1{
+    color:gold;
+}
+.slot{
+    font-size:70px;
+    background:#222;
+    padding:20px;
+    border-radius:10px;
+    margin:20px 0;
+}
+button{
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:gold;
+    cursor:pointer;
+}
+button:hover{
+    opacity:.9;
+}
+#result{
+    margin-top:20px;
+    font-size:22px;
+}
+.balance{
+    font-size:20px;
+    margin:15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>🎰 Lucky Spin Demo</h1>
+<p>Virtual Coins Only</p>
+
+<div class="balance">
+Coins: <span id="coins">100</span>
+</div>
+
+<div class="slot" id="slot">
+🍒 🍋 ⭐
+</div>
+
+<button onclick="spin()">SPIN</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+const symbols=["🍒","🍋","⭐","💎","7️⃣"];
+let coins=100;
+
+function spin(){
+if(coins<10){
+document.getElementById("result").innerHTML="Out of coins!";
+return;
+}
+
+coins-=10;
+
+let a=symbols[Math.floor(Math.random()*symbols.length)];
+let b=symbols[Math.floor(Math.random()*symbols.length)];
+let c=symbols[Math.floor(Math.random()*symbols.length)];
+
+document.getElementById("slot").innerHTML=a+" "+b+" "+c;
+
+if(a===b && b===c){
+coins+=100;
+document.getElementById("result").innerHTML="🎉 Jackpot! +100 coins";
+}else if(a===b || b===c || a===c){
+coins+=20;
+document.getElementById("result").innerHTML="😊 Match! +20 coins";
+}else{
+document.getElementById("result").innerHTML="Try again!";
+}
+
+document.getElementById("coins").innerHTML=coins;
+}
+</script>
+
+</body>
+</html>
